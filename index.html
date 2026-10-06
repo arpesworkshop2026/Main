@@ -194,6 +194,30 @@
       margin-top: 32px;
     }
 
+    /* Google 폼: 제출 정보는 연결한 Google 폼에 저장됩니다. */
+    .registration-intro {
+      margin: 24px 0 12px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .registration-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      text-underline-offset: 4px;
+    }
+
+    .registration-frame {
+      display: block;
+      width: 100%;
+      height: 1100px;
+      border: 0;
+      margin-bottom: 32px;
+      background: white;
+    }
+
     /* 모바일: 글자를 화면에 맞추고 메뉴를 줄바꿈합니다. */
     @media (max-width: 650px) {
       header { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -224,6 +248,9 @@
         <a href="#sponsors" data-page="sponsors">
           Sponsors
         </a>
+        <a href="#registration" data-page="registration">
+          Registration
+        </a>
         <a href="#contact" data-page="contact">
           Contact
         </a>
@@ -236,7 +263,7 @@
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
-      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Program, Venue, Sponsors, Contact">
+      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Program, Venue, Sponsors, Registration, Contact">
     </form>
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
@@ -270,6 +297,17 @@
         <h1>
           Sponsors
         </h1>
+      </section>
+      <section id="registration" hidden>
+        <h1>Registration</h1>
+        <p class="registration-intro">Register for ARPES Workshop 2026 using the form below.</p>
+        <a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform" target="_blank" rel="noopener noreferrer">Open registration form in a new tab ↗</a>
+        <iframe
+          class="registration-frame"
+          title="ARPES Workshop 2026 registration form"
+          src="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform?embedded=true"
+          loading="lazy"
+        ></iframe>
       </section>
       <section id="contact" hidden>
         <h1>
