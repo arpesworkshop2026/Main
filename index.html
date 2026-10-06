@@ -11,42 +11,51 @@
       box-sizing: border-box;
     }
 
-    /* 전체 페이지: 배경, 글자색, 글씨체 */
+    /* 전체 글씨체와 맨 위 여백: 약 두 줄 높이 */
     body {
       margin: 0;
+      padding-top: 40px;
       background: white;
       color: #202020;
       font-family: Candara, "Calibri", "Segoe UI", sans-serif;
     }
 
-    /* 상단 로고와 메뉴 배치 */
+    /* 최대 800px, 작은 화면에서는 좌우 16px 여백 */
+    header, main, form {
+      width: calc(100% - 32px);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 상단 로고와 메뉴 */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 12px 2.5%;
+      flex-wrap: wrap;
+      gap: 12px 20px;
     }
 
-    /* 왼쪽 로고 글자 크기 */
     .brand {
       font-size: 20px;
       font-weight: 800;
       letter-spacing: -1.5px;
       color: black;
       text-decoration: none;
-      white-space: nowrap;
     }
 
-    /* 탭 사이 간격 */
     nav {
       display: flex;
       align-items: center;
-      gap: clamp(24px, 3vw, 64px);
+      flex-wrap: wrap;
+      gap: 8px 20px;
     }
 
-    /* 탭 글자 크기 */
     nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       font-size: 20px;
       color: inherit;
       text-decoration: none;
@@ -58,6 +67,11 @@
     }
 
     button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
       border: 0;
       background: none;
       padding: 0;
@@ -65,20 +79,17 @@
       cursor: pointer;
     }
 
-    /* 돋보기 아이콘 크기 */
     svg {
       display: block;
       width: 20px;
       height: 20px;
     }
 
-    /* 본문 너비와 여백 */
+    /* 본문과 상단 사이 여백 */
     main {
-      width: 80%;
-      margin: 48px auto 0;
+      margin-top: 40px;
     }
 
-    /* 본문 제목 크기와 색상 */
     h1 {
       margin: 0;
       color: #1557cf;
@@ -90,77 +101,46 @@
       display: none !important;
     }
 
+    /* 검색창: 위아래 여백과 입력칸 높이를 줄임 */
     form {
-      width: 80%;
-      margin: 16px auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     input {
       width: 100%;
-      padding: 12px;
+      min-width: 0;
+      padding: 7px 12px;
       font: inherit;
+      font-size: 16px;
+      line-height: 1.25;
       border: 1px solid #aaa;
     }
 
     :focus-visible {
-      outline: 3px solid #1557cf;
-      outline-offset: 5px;
+      outline: 2px solid #1557cf;
+      outline-offset: 3px;
     }
 
-    /* 큰 화면: 아래 설정이 기본 설정보다 우선합니다 */
-    @media (min-width: 1600px) {
-
-      .brand,nav a {
-        font-size: 44px;
-      }
-
-      /* 본문 제목 크기와 색상 */
-      h1 {
-        font-size: 56px;
-      }
-
-      /* 돋보기 아이콘 크기 */
-      svg {
-        width: 44px;
-        height: 44px;
-      }
-    }
-
-    /* 작은 화면: 아래 설정이 기본 설정보다 우선합니다 */
-    @media (max-width: 850px) {
-
-      /* 상단 로고와 메뉴 배치 */
+    /* 모바일: 로고 아래에 메뉴를 배치하고 자연스럽게 줄바꿈 */
+    @media (max-width: 650px) {
       header {
-        flex-wrap: wrap;
-        padding: 16px 5%;
-        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
       }
 
-      /* 탭 사이 간격 */
       nav {
-        flex-wrap: wrap;
-        gap: 18px;
+        width: 100%;
+        gap: 4px 16px;
       }
 
-      /* 탭 글자 크기 */
       nav a {
         font-size: 15px;
       }
 
-      /* 왼쪽 로고 글자 크기 */
-      .brand {
-        font-size: 28px;
-      }
-
-      /* 본문 너비와 여백 */
       main {
-        width: 90%;
-        margin-top: 40px;
-      }
-
-      /* 본문 제목 크기와 색상 */
-      h1 {
-        font-size: 36px;
+        margin-top: 32px;
       }
     }
     </style>
