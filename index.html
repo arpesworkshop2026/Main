@@ -144,6 +144,35 @@
       text-transform: uppercase;
     }
 
+    /* 홈 화면의 행사 제목, 날짜, 장소, 주최 */
+    .event-title {
+      font-size: clamp(30px, 5.8vw, 54px);
+      line-height: 1.16;
+      letter-spacing: -1.8px;
+      overflow-wrap: break-word;
+    }
+
+    .event-details {
+      margin-top: 32px;
+    }
+
+    .event-details p {
+      margin: 8px 0;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .event-details .event-date {
+      font-size: clamp(21px, 3vw, 28px);
+      font-weight: 500;
+      letter-spacing: -.5px;
+    }
+
+    .event-details .event-host {
+      margin-top: 18px;
+      font-size: 15px;
+    }
+
     /* 나중에 넣을 사진: 화면 폭에 맞춰 자동으로 줄어듭니다. */
     .home-photo {
       display: block;
@@ -200,13 +229,19 @@
     <main>
       <!-- 각 section 안에 해당 탭의 내용을 추가하세요. -->
       <section id="home">
-        <p class="eyebrow">Angle-resolved photoemission spectroscopy</p>
-        <h1 class="hero-title">
-          <span>ARPES</span>
-          <span>Workshop</span>
-          <span class="year">2026</span>
+        <p class="eyebrow">ARPES Workshop 2026</p>
+        <h1 class="hero-title event-title">
+          ARPES meets<br>
+          crystal growth<br>
+          and characterization
         </h1>
-        <!-- 나중에 사진을 여기에 추가하세요: <img class="home-photo" src="photo.jpg" alt="Workshop photo"> -->
+        <div class="event-details">
+          <p class="event-date">November 18–20, 2026</p>
+          <p>Songdo, Incheon, South Korea</p>
+          <p class="event-host">Hosted by Yonsei University</p>
+        </div>
+        <!-- 나중에 송도 또는 행사장 사진을 여기에 추가하세요. -->
+        <!-- <img class="home-photo" src="photo.jpg" alt="Workshop venue in Songdo"> -->
       </section>
       <section id="program" hidden>
         <h1>
@@ -229,7 +264,7 @@
         </h1>
       </section>
     </main>
-    <footer><span>ARPES Workshop 2026</span><span>2026</span></footer>
+    <footer><span>ARPES Workshop 2026</span><span>Yonsei University · Songdo</span></footer>
     <script>
       // 탭 클릭 또는 주소 변경 시 해당 영역만 표시합니다.
     const links = [...document.querySelectorAll('[data-page]')];
