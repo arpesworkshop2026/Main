@@ -4,26 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      ARPES Workshop 2026 | Venue
+      ARPES Workshop 2026 | Home
     </title>
     <style>
-    * {
-      box-sizing: border-box;
+
+    /* 색상과 전체 폭은 여기에서 수정하세요. */
+    :root {
+      --background: #b8b4ae;
+      --ink: #292b29;
+      --line: #f5f3ed;
+      --width: 800px;
     }
 
-    /* 전체 글씨체와 맨 위 여백: 약 두 줄 높이 */
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      padding-top: 40px;
-      background: white;
-      color: #202020;
-      font-family: Candara, "Calibri", "Segoe UI", sans-serif;
+      padding: 40px 0 24px;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--ink);
+      font-family: "Avenir Next", "Century Gothic", "Trebuchet MS", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* 최대 800px, 작은 화면에서는 좌우 16px 여백 */
-    header, main, form {
-      width: calc(100% - 32px);
-      max-width: 800px;
+    header, main, form, footer {
+      width: calc(100% - 40px);
+      max-width: var(--width);
       margin-left: auto;
       margin-right: auto;
     }
@@ -34,14 +41,17 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px 20px;
+      gap: 8px 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(245, 243, 237, .55);
     }
 
+    a { color: inherit; }
+
     .brand {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: -1.5px;
-      color: black;
+      letter-spacing: -.8px;
       text-decoration: none;
     }
 
@@ -49,22 +59,25 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px 20px;
+      gap: 4px 18px;
     }
 
     nav a {
       display: inline-flex;
       align-items: center;
       min-height: 44px;
-      font-size: 20px;
-      color: inherit;
+      font-size: 14px;
       text-decoration: none;
       white-space: nowrap;
+      border-bottom: 2px solid transparent;
     }
 
     nav a[aria-current="page"] {
       font-weight: 800;
+      border-color: var(--ink);
     }
+
+    nav a:hover { border-color: var(--line); }
 
     button {
       display: inline-flex;
@@ -72,76 +85,81 @@
       justify-content: center;
       width: 44px;
       height: 44px;
+      padding: 0;
       border: 0;
       background: none;
-      padding: 0;
       color: inherit;
       cursor: pointer;
     }
 
-    svg {
-      display: block;
-      width: 20px;
-      height: 20px;
-    }
+    button svg { width: 19px; height: 19px; }
+    [hidden] { display: none !important; }
 
-    /* 본문과 상단 사이 여백 */
-    main {
-      margin-top: 40px;
-    }
-
-    h1 {
-      margin: 0;
-      color: #1557cf;
-      font-size: 20px;
-      font-weight: 800;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    /* 검색창: 위아래 여백과 입력칸 높이를 줄임 */
-    form {
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
+    /* 검색창 높이를 작게 유지합니다. */
+    form { margin-top: 12px; margin-bottom: 12px; }
     input {
       width: 100%;
       min-width: 0;
       padding: 7px 12px;
+      border: 1px solid rgba(245, 243, 237, .9);
+      border-radius: 0;
+      background: rgba(255, 255, 255, .14);
+      color: var(--ink);
       font: inherit;
       font-size: 16px;
       line-height: 1.25;
-      border: 1px solid #aaa;
+    }
+    input::placeholder { color: #4b4d49; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+    /* 홈: 큰 제목과 여백 */
+    main { margin-top: 0; }
+    section { min-height: 550px; padding-top: 54px; }
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.07;
+      font-weight: 800;
+      letter-spacing: -3px;
+    }
+    .hero-title span { display: block; }
+    .hero-title .year { margin-top: 8px; font-weight: 500; }
+    .eyebrow {
+      margin: 0 0 18px;
+      font-size: 11px;
+      letter-spacing: 2.4px;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
-    :focus-visible {
-      outline: 2px solid #1557cf;
-      outline-offset: 3px;
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(245, 243, 237, .55);
+      font-size: 10px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
     }
 
-    /* 모바일: 로고 아래에 메뉴를 배치하고 자연스럽게 줄바꿈 */
+    /* 나중에 넣을 사진: 화면 폭에 맞춰 자동으로 줄어듭니다. */
+    .home-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 32px;
+    }
+
+    /* 모바일: 글자를 화면에 맞추고 메뉴를 줄바꿈합니다. */
     @media (max-width: 650px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      nav {
-        width: 100%;
-        gap: 4px 16px;
-      }
-
-      nav a {
-        font-size: 15px;
-      }
-
-      main {
-        margin-top: 32px;
-      }
+      header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      nav { width: 100%; gap: 4px 15px; }
+      nav a { font-size: 13px; }
+      section { padding-top: 40px; min-height: 480px; }
+      h1 { letter-spacing: -1.8px; }
+      footer { flex-wrap: wrap; }
     }
     </style>
   </head>
@@ -181,17 +199,21 @@
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
       <!-- 각 section 안에 해당 탭의 내용을 추가하세요. -->
-      <section id="home" hidden>
-        <h1>
-          Home
+      <section id="home">
+        <p class="eyebrow">Angle-resolved photoemission spectroscopy</p>
+        <h1 class="hero-title">
+          <span>ARPES</span>
+          <span>Workshop</span>
+          <span class="year">2026</span>
         </h1>
+        <!-- 나중에 사진을 여기에 추가하세요: <img class="home-photo" src="photo.jpg" alt="Workshop photo"> -->
       </section>
       <section id="program" hidden>
         <h1>
           Program
         </h1>
       </section>
-      <section id="venue">
+      <section id="venue" hidden>
         <h1>
           Venue
         </h1>
@@ -207,6 +229,7 @@
         </h1>
       </section>
     </main>
+    <footer><span>ARPES Workshop 2026</span><span>2026</span></footer>
     <script>
       // 탭 클릭 또는 주소 변경 시 해당 영역만 표시합니다.
     const links = [...document.querySelectorAll('[data-page]')];
@@ -215,7 +238,7 @@
       const requested = location.hash.slice(1).toLowerCase();
       const page = links.some(link => link.dataset.page === requested)
         ? requested
-        : 'venue'; // 처음 열었을 때 표시할 탭
+        : 'home'; // 처음 열었을 때 표시할 탭
 
       document.querySelectorAll('main section').forEach(section => {
         section.hidden = section.id !== page;
@@ -230,7 +253,7 @@
       });
 
       document.title = 'ARPES Workshop 2026 | '
-        + document.getElementById(page).querySelector('h1').textContent;
+        + links.find(link => link.dataset.page === page).textContent.trim();
     }
 
     window.addEventListener('hashchange', showPage);
