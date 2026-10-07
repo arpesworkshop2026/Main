@@ -432,6 +432,21 @@
     .info-details dd { margin: 0; }
       .schedule-table th:first-child { width: 220px; white-space: nowrap; }
     .event-info .speakers-heading { margin-top: 44px; }
+  
+    #search-form { padding: 20px 24px; background: rgba(255,255,255,.55); border: 1px solid #cfd3d8; }
+    .search-label { display: block; margin-bottom: 10px; font-size: 20px; font-weight: 600; }
+    .search-controls { display: flex; gap: 10px; }
+    .search-controls input { flex: 1; background: #fff; border-color: #adb4bd; }
+    .search-submit { width: auto; height: auto; padding: 8px 18px; background: #353b45; color: white; font: inherit; }
+    .search-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .search-suggestions button { width: auto; height: auto; padding: 6px 12px; border: 1px solid #bcc2cb; border-radius: 18px; font: inherit; font-size: 15px; }
+    #search-status { font-size: 15px; line-height: 1.5; margin: 14px 0 8px; }
+    #search-results { max-height: 460px; overflow-y: auto; }
+    .search-result { display: block; width: 100%; height: auto; padding: 14px 10px; border-top: 1px solid #cfd3d8; text-align: left; font: inherit; }
+    .search-result strong { display: block; font-size: 17px; margin-bottom: 5px; }
+    .search-result span { display: block; font-size: 16px; line-height: 1.5; }
+    .search-result:hover, .search-result:focus-visible { background: #e0e6ef; }
+    .search-target { outline: 2px solid #839ac3; outline-offset: 5px; background-color: rgba(205,220,243,.6); }
   </style>
   </head>
   <body>
@@ -463,7 +478,7 @@
           Accommodation
         </a>
         <a href="#gallery" data-page="gallery">Gallery</a>
-        <button type="button" aria-label="Search tabs" aria-controls="search-form" aria-expanded="false">
+        <button type="button" aria-label="Search workshop content" aria-controls="search-form" aria-expanded="false">
           <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <circle cx="13" cy="13" r="10" stroke="currentColor" stroke-width="3"/>
             <path d="M21 21L30 30" stroke="currentColor" stroke-width="3"/>
@@ -473,7 +488,19 @@
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
-      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program at glance, Full program, Venue, Accommodation">
+      <label class="search-label" for="site-search">Search this workshop</label>
+      <div class="search-controls">
+        <input id="site-search" type="search" aria-label="Search workshop content" aria-controls="search-results" placeholder="Search speakers, fees, sessions, hotels…" autocomplete="off">
+        <button class="search-submit" type="submit">Search</button>
+      </div>
+      <div class="search-suggestions" aria-label="Suggested searches">
+        <button type="button" data-query="registration fee">Registration fees</button>
+        <button type="button" data-query="invited speakers">Speakers</button>
+        <button type="button" data-query="poster">Poster session</button>
+        <button type="button" data-query="hotel">Hotels</button>
+      </div>
+      <p id="search-status" role="status" aria-live="polite">Search across all tabs. Korean keywords such as 등록비, 연사, 일정, 호텔 also work.</p>
+      <div id="search-results" aria-label="Search results"></div>
     </form>
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
@@ -746,40 +773,109 @@
     window.addEventListener('hashchange', showPage);
     showPage();
 
-    // 돋보기 버튼: 검색창을 열거나 닫습니다.
+    // 전체 본문 검색: 숨겨진 탭도 검색하고 해당 문단으로 이동합니다.
     const toggle = document.querySelector('[aria-controls="search-form"]');
-    const form = document.querySelector('form');
-    const input = form.querySelector('input');
-
+    const form = document.getElementById('search-form');
+    const input = document.getElementById('site-search');
+    const results = document.getElementById('search-results');
+    const status = document.getElementById('search-status');
+    const searchHelp = status.textContent;
+    const searchAliases = {
+      '등록비': 'registration fee', '참가비': 'registration fee', '등록': 'registration',
+      '신청': 'registration', '마감': 'deadline', '연사': 'invited speakers',
+      '초청연사': 'invited speakers', '일정': 'program', '시간표': 'program',
+      '호텔': 'hotel', '숙소': 'accommodation', '숙박': 'accommodation',
+      '장소': 'venue', '오시는길': 'venue', '포스터': 'poster',
+      '문의': 'inquiries', '계좌': 'account', '회원': 'membership', '후원': 'supported by'
+    };
+    function normalizeSearch(value) {
+      return value.normalize('NFKC').toLowerCase().replace(/(\d),(?=\d{3})/g, '$1').replace(/\s+/g, ' ').trim();
+    }
+    function searchTerms(query) {
+      return normalizeSearch(query).split(' ').filter(Boolean).flatMap(word => (searchAliases[word] || word).split(' '));
+    }
+    function rankSearchRecord(record, terms) {
+      const body = normalizeSearch(record.text);
+      const context = normalizeSearch(record.pageName + ' ' + record.heading);
+      if (!terms.every(term => (body + ' ' + context).includes(term))) return 0;
+      return 1 + terms.reduce((score, term) => score + (body.includes(term) ? 4 : 1), 0)
+        + (body.includes(terms.join(' ')) ? 6 : 0);
+    }
+    function collectSearchRecords() {
+      const records = [];
+      document.querySelectorAll('main > section').forEach(section => {
+        const pageName = links.find(link => link.dataset.page === section.id).textContent.trim();
+        let heading = pageName;
+        section.querySelectorAll('h1, h2, h3, p, li, tr, dl > div, figcaption').forEach(target => {
+          if (target.matches('h1, h2, h3')) heading = target.textContent.trim();
+          if (target.matches('thead tr') || target.closest('figcaption') !== null && !target.matches('figcaption')) return;
+          const text = target.textContent.replace(/\s+/g, ' ').trim();
+          if (text) records.push({ page: section.id, pageName, heading, text, target });
+        });
+      });
+      return records;
+    }
+    function closeSearch() {
+      form.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function openSearchResult(record) {
+      closeSearch();
+      location.hash = record.page;
+      showPage();
+      document.querySelectorAll('.search-target').forEach(node => node.classList.remove('search-target'));
+      record.target.classList.add('search-target');
+      record.target.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => {
+        record.target.focus({ preventScroll: true });
+        record.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      window.setTimeout(() => record.target.classList.remove('search-target'), 4000);
+    }
+    function runSearch() {
+      results.replaceChildren();
+      const terms = searchTerms(input.value);
+      if (!terms.length) { status.textContent = searchHelp; return; }
+      const matches = collectSearchRecords().map(record => ({record, score: rankSearchRecord(record, terms)}))
+        .filter(item => item.score > 0).sort((a, b) => b.score - a.score);
+      if (!matches.length) {
+        status.textContent = 'No results. Try a speaker name, registration fee, poster, hotel, or venue.';
+        return;
+      }
+      const shown = matches.slice(0, 20);
+      status.textContent = matches.length + ' results' + (matches.length > 20 ? ' · Showing the first 20. Add another word to narrow your search.' : ' · Select a result to jump to it.');
+      shown.forEach(({record}) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'search-result';
+        const title = document.createElement('strong');
+        title.textContent = record.pageName + (record.heading !== record.pageName ? ' · ' + record.heading : '');
+        const snippet = document.createElement('span');
+        const normalized = normalizeSearch(record.text);
+        const position = Math.max(0, ...terms.map(term => normalized.indexOf(term)));
+        const start = Math.max(0, position - 65);
+        snippet.textContent = (start ? '…' : '') + record.text.slice(start, start + 230) + (record.text.length > start + 230 ? '…' : '');
+        button.append(title, snippet);
+        button.addEventListener('click', () => openSearchResult(record));
+        results.append(button);
+      });
+    }
     toggle.addEventListener('click', () => {
       form.hidden = !form.hidden;
       toggle.setAttribute('aria-expanded', String(!form.hidden));
-      if (!form.hidden) input.focus();
+      if (!form.hidden) { input.focus(); runSearch(); }
     });
-
-    // 검색창에 탭 이름을 입력하고 Enter를 누르면 이동합니다.
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      const query = input.value.trim().toLowerCase();
-      const match = query && links.find(link =>
-        link.textContent.toLowerCase().includes(query)
-      );
-
-      input.setCustomValidity(
-        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation, Gallery.'
-      );
-
-      if (match) {
-        location.hash = match.dataset.page;
-        form.hidden = true;
-        toggle.setAttribute('aria-expanded', 'false');
-        match.focus();
-      } else {
-        input.reportValidity();
+    form.addEventListener('submit', event => { event.preventDefault(); runSearch(); });
+    input.addEventListener('input', runSearch);
+    form.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); closeSearch(); toggle.focus(); }
+      if (event.key === 'ArrowDown' && event.target === input && results.firstElementChild) {
+        event.preventDefault(); results.firstElementChild.focus();
       }
     });
-
-    input.addEventListener('input', () => input.setCustomValidity(''));
+    form.querySelectorAll('[data-query]').forEach(button => button.addEventListener('click', () => {
+      input.value = button.dataset.query; runSearch(); input.focus();
+    }));
 
     // 홈의 워크숍 사진을 Gallery에서도 표시합니다.
     const galleryGrid = document.querySelector('.gallery-grid');
