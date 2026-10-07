@@ -411,6 +411,27 @@
     @media screen and (max-device-width: 800px) {
       .quantum-art { margin-left: 10px; }
     }
+  
+    .event-info { padding-bottom: 36px; text-align: left; font-size: 19px; line-height: 1.7; }
+    .event-info h2 { font-size: 28px; font-weight: 500; line-height: 1.3; margin: 0 0 22px; }
+    .event-info h3 { font-size: 22px; font-weight: 600; line-height: 1.4; margin: 32px 0 12px; }
+    .event-info p { margin: 12px 0; }
+    .event-info a { text-underline-offset: 4px; overflow-wrap: anywhere; }
+    .home-overview { margin-top: 52px; padding-top: 28px; border-top: 1px solid #cfd3d8; }
+    .info-deadline { padding: 16px 20px; background: rgba(255,255,255,.45); }
+    .info-button { display: inline-block; margin: 12px 0; padding: 10px 18px; border: 1px solid #7a818c; text-decoration: none; }
+    .info-button:hover { background: rgba(255,255,255,.6); }
+    .info-table { width: 100%; border-collapse: collapse; margin: 18px 0; text-align: left; }
+    .info-table th, .info-table td { padding: 14px 12px; border-bottom: 1px solid #cfd3d8; vertical-align: top; }
+    .info-table thead { background: rgba(255,255,255,.4); }
+    .info-table tbody th { font-weight: 500; }
+    .speaker-table th:first-child { width: 30%; }
+    .info-details { margin: 20px 0; }
+    .info-details > div { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 10px 0; }
+    .info-details dt { font-weight: 600; }
+    .info-details dd { margin: 0; }
+      .schedule-table th:first-child { width: 220px; white-space: nowrap; }
+    .event-info .speakers-heading { margin-top: 44px; }
   </style>
   </head>
   <body>
@@ -472,9 +493,20 @@
         <div class="event-details">
           <p class="event-date">November 18–20, 2026</p>
           <p>Songdo, Incheon, South Korea</p>
-          <p class="event-host">Hosted by Yonsei University</p>
+          <p class="event-host">Hosted by Yonsei University and partner institutions</p>
         </div>
           </div>
+        </div>
+        <div class="event-info home-overview">
+          <h2>About the workshop</h2>
+          <p>The 6th ARPES workshop brings together researchers from Korea and abroad to exchange advances in angle-resolved photoemission spectroscopy, electronic structure, quantum materials, synchrotron science, materials synthesis, theory, and advanced photoelectron spectroscopy techniques.</p>
+          <p>Invited talks and poster presentations by students and early-career researchers will share recent results and encourage scientific and technical exchange among universities, research institutes, and synchrotron facilities. Researchers and students in ARPES and related fields are welcome.</p>
+          <h3>Organizers</h3>
+          <p>Yonsei University; Korea Advanced Institute of Science and Technology (KAIST); Ajou University; Kangwon National University; Gyeongsang National University; Sungkyunkwan University; Seoul National University; Korea Basic Science Institute (KBSI).</p>
+          <h3>Supported by</h3>
+          <p>Moeemotion · Scienta Omicron Korea · Pre-VAC · MotionHitech · Specs Korea</p>
+          <h3>Workshop inquiries</h3>
+          <p><span lang="ko">류세희 박사 · 한국기초과학지원연구원</span> (KBSI)<br><a href="mailto:sru7@kbysi.re.kr">sru7@kbysi.re.kr</a></p>
         </div>
         <div class="workshop-history" aria-labelledby="history-title">
           <div class="history-heading">
@@ -528,7 +560,7 @@
       <section id="venue" aria-label="Venue" hidden>
         <h2 class="venue-name">Songdo Convensia</h2>
         <p class="venue-korean" lang="ko">송도 컨벤시아</p>
-        <p class="venue-description">6th ARPES workshop will take place at Songdo Convensia in Songdo, Incheon, South Korea, on November 18–20, 2026. The workshop is hosted by Yonsei University.</p>
+        <p class="venue-description">6th ARPES workshop will take place at Songdo Convensia in Songdo, Incheon, South Korea, on November 18–20, 2026. The workshop is jointly hosted by Yonsei University and partner institutions.</p>
         <dl class="venue-details">
           <div>
             <dt>Address</dt>
@@ -554,20 +586,71 @@
         <p class="venue-source"><a href="https://songdoconvensia.visitincheon.or.kr/page/nav-from-seoul2.do" target="_blank" rel="noopener noreferrer">Official venue and transport information ↗</a></p>
       </section>
       <section id="registration" aria-label="Registration" hidden>
-        <p class="registration-intro">Register for 6th ARPES workshop using the form below.</p>
-        <a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform" target="_blank" rel="noopener noreferrer">Open registration form in a new tab ↗</a>
-        <iframe
-          class="registration-frame"
-          title="6th ARPES workshop registration form"
-          src="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform?embedded=true"
-          loading="lazy"
-        ></iframe>
+        <div class="event-info">
+          <h2>Registration</h2>
+          <p>Registration for the 6th ARPES workshop is available through the Korean Synchrotron Radiation Users Association (KOSUA) website.</p>
+          <p class="info-deadline"><strong>Registration deadline: November 14 (Saturday), 2026</strong></p>
+          <a class="info-button" href="https://kosua.postech.ac.kr/" target="_blank" rel="noopener noreferrer">Visit KOSUA to register ↗</a>
+          <h3>How to register</h3>
+          <p>On the KOSUA website, go to <span lang="ko">행사안내 → 워크샵안내</span> → <strong>The 6th ARPES Workshop</strong>.</p>
+          <p>Registration is open to association members only. Please join the association and pay the annual membership fee before applying.</p>
+          <h3>Workshop registration fees</h3>
+          <table class="info-table"><thead><tr><th scope="col">Category</th><th scope="col">Registration fee</th></tr></thead><tbody>
+            <tr><th scope="row">Student</th><td>KRW 150,000</td></tr>
+            <tr><th scope="row">Regular participant</th><td>KRW 300,000</td></tr>
+          </tbody></table>
+          <h3>Association membership fees</h3>
+          <table class="info-table"><thead><tr><th scope="col">Category</th><th scope="col">Annual fee</th><th scope="col">Joining fee</th></tr></thead><tbody>
+            <tr><th scope="row">Student member</th><td>KRW 20,000</td><td>Exempt</td></tr>
+            <tr><th scope="row">Regular member</th><td>KRW 50,000</td><td>KRW 10,000</td></tr>
+          </tbody></table>
+          <h3>Payment</h3>
+          <p>Available options: bank transfer, credit card (online payment available), or invoice issuance.</p>
+          <p>An electronic tax invoice cannot also be issued for a payment made by credit card.</p>
+          <dl class="info-details"><div><dt>Bank</dt><dd>KB Kookmin Bank (<span lang="ko">국민은행</span>)</dd></div><div><dt>Account number</dt><dd>619-25-0007-778</dd></div><div><dt>Account holder</dt><dd lang="ko">한국방사광이용자협회</dd></div></dl>
+          <h3>Registration inquiries</h3>
+          <p><span lang="ko">(사)한국방사광이용자협회</span> (KOSUA)<br><a href="tel:+82542791600">054-279-1600</a><br><a href="mailto:kosua-office@postech.ac.kr">kosua-office@postech.ac.kr</a></p>
+        </div>
       </section>
       <section id="program-glance" aria-label="Program at glance" hidden>
-        <!-- 전체 일정 요약을 여기에 추가하세요. -->
+        <div class="event-info">
+          <h2>Program at a glance</h2>
+          <dl class="info-details"><div><dt>Dates</dt><dd>November 18 (Wednesday) – 20 (Friday), 2026</dd></div><div><dt>Venue</dt><dd>Songdo Convensia, Incheon, South Korea</dd></div><div><dt>Participants</dt><dd>Researchers and students working in ARPES and related fields</dd></div></dl>
+          <h3>Workshop format</h3>
+          <ul><li>Invited talks by researchers from Korea and abroad</li><li>Poster presentations by students and early-career researchers</li><li>Scientific and technical exchange among universities, research institutes, and synchrotron facilities</li></ul>
+          <h3>Topics</h3>
+          <p>Angle-resolved photoemission spectroscopy (ARPES), electronic structure, quantum materials, synchrotron science, materials synthesis, theory, and advanced photoelectron spectroscopy techniques.</p>
+          <table class="info-table"><thead><tr><th scope="col">Date</th><th scope="col">Overview</th></tr></thead><tbody>
+<tr><th scope="row">Nov 18 · Wed</th><td>Arrival by 13:00; opening at 13:30; Sessions 1–2; dinner from 17:30.</td></tr>
+<tr><th scope="row">Nov 19 · Thu</th><td>Sessions 3–5 from 09:00; poster session 16:00–17:30; dinner from 17:30.</td></tr>
+<tr><th scope="row">Nov 20 · Fri</th><td>Session 6 at 09:00; discussion and closing 11:00–12:30; lunch from 12:30.</td></tr>
+</tbody></table><p>All times are Korea Standard Time (KST). See the Full program tab for the complete timetable.</p>
+        </div>
       </section>
       <section id="full-program" aria-label="Full program" hidden>
-        <!-- 세부 프로그램을 여기에 추가하세요. -->
+        <div class="event-info">
+          <h2>Full program</h2>
+<p>November 18–20, 2026 · Songdo Convensia<br>All times are Korea Standard Time (KST).</p>
+<h3>November 18 (Wednesday)</h3><table class="info-table schedule-table"><thead><tr><th scope="col">Time</th><th scope="col">Program</th></tr></thead><tbody><tr><th scope="row">By 13:00</th><td>Participant arrival / transfer</td></tr><tr><th scope="row">13:30–14:00</th><td>Opening</td></tr><tr><th scope="row">14:00–15:30</th><td>Session 1</td></tr><tr><th scope="row">15:30–16:00</th><td>Coffee break</td></tr><tr><th scope="row">16:00–17:30</th><td>Session 2</td></tr><tr><th scope="row">17:30 onwards</th><td>Dinner</td></tr></tbody></table>
+<h3>November 19 (Thursday)</h3><table class="info-table schedule-table"><thead><tr><th scope="col">Time</th><th scope="col">Program</th></tr></thead><tbody><tr><th scope="row">09:00–10:30</th><td>Session 3</td></tr><tr><th scope="row">10:30–11:00</th><td>Coffee break</td></tr><tr><th scope="row">11:00–12:30</th><td>Session 4</td></tr><tr><th scope="row">12:30–14:00</th><td>Lunch</td></tr><tr><th scope="row">14:00–15:30</th><td>Session 5</td></tr><tr><th scope="row">15:30–16:00</th><td>Coffee break</td></tr><tr><th scope="row">16:00–17:30</th><td>Poster session</td></tr><tr><th scope="row">17:30 onwards</th><td>Dinner</td></tr></tbody></table>
+<h3>November 20 (Friday)</h3><table class="info-table schedule-table"><thead><tr><th scope="col">Time</th><th scope="col">Program</th></tr></thead><tbody><tr><th scope="row">09:00–10:30</th><td>Session 6</td></tr><tr><th scope="row">10:30–11:00</th><td>Coffee break</td></tr><tr><th scope="row">11:00–12:30</th><td>Discussion &amp; closing</td></tr><tr><th scope="row">12:30 onwards</th><td>Lunch</td></tr></tbody></table>
+<h2 class="speakers-heading">Invited speakers</h2>
+          <table class="info-table speaker-table"><thead><tr><th scope="col">Speaker</th><th scope="col">Affiliation</th></tr></thead><tbody>
+            <tr><th scope="row">Hideaki Iwasawa</th><td>QST / NanoTerasu, Japan</td></tr>
+            <tr><th scope="row">Yong Zhong</th><td>QSCGBA, China</td></tr>
+            <tr><th scope="row">Ping-Hui Lin</th><td>National Taiwan Normal University, Taiwan</td></tr>
+            <tr><th scope="row">Ryo Noguchi</th><td>National Taiwan University, Taiwan</td></tr>
+            <tr><th scope="row">Makoto Hashimoto</th><td>SLAC National Accelerator Laboratory, USA</td></tr>
+            <tr><th scope="row" lang="ko">이우주</th><td lang="ko">가천대학교</td></tr>
+            <tr><th scope="row" lang="ko">이지은</th><td lang="ko">경북대학교</td></tr>
+            <tr><th scope="row" lang="ko">류혜진</th><td lang="ko">한양대학교</td></tr>
+            <tr><th scope="row" lang="ko">류세희</th><td lang="ko">한국기초과학지원연구원 (KBSI)</td></tr>
+          </tbody></table>
+          <p>Additional invited speakers will be announced.</p>
+          <p>Individual talk titles and speaker-to-session assignments will be announced.</p>
+          <h3>Workshop inquiries</h3>
+          <p><span lang="ko">류세희 박사 · 한국기초과학지원연구원</span> (KBSI)<br><a href="mailto:sru7@kbysi.re.kr">sru7@kbysi.re.kr</a></p>
+        </div>
       </section>
       <section id="accommodation" aria-label="Accommodation" hidden>
         <p class="hotel-intro">Nearby hotels for your stay during 6th ARPES workshop, November 18–20.</p>
