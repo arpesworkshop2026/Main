@@ -422,7 +422,23 @@
       nav button { width: 28px; }
       nav a { font-size: clamp(13px, 3.75vw, 16px); }
     }
-</style>
+
+    .gallery-title { margin: 0 0 28px; font-size: 28px; font-weight: 500; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 40px; }
+    .gallery-grid .history-item { width: 100%; }
+    @media (min-width: 651px) {
+      nav { justify-content: space-between; column-gap: 6px; }
+      nav a { font-size: clamp(14px, 1.7vw, 19px); }
+      nav button { width: 32px; flex-shrink: 0; }
+    }
+    @media (max-width: 650px) {
+      nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px 6px; }
+      .nav-row { display: contents; }
+      nav a { justify-content: center; text-align: center; white-space: normal; font-size: clamp(12px, 3.5vw, 16px); }
+      nav button { justify-self: center; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+  </style>
   </head>
   <body>
     <!-- 상단: 로고와 메뉴 -->
@@ -452,6 +468,7 @@
         <a href="#accommodation" data-page="accommodation">
           Accommodation
         </a>
+        <a href="#gallery" data-page="gallery">Gallery</a>
         <button type="button" aria-label="Search tabs" aria-controls="search-form" aria-expanded="false">
           <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <circle cx="13" cy="13" r="10" stroke="currentColor" stroke-width="3"/>
@@ -639,6 +656,10 @@
         </article>
         <p class="hotel-note">Please check room availability and rates directly with each hotel for your travel dates.</p>
       </section>
+      <section id="gallery" aria-label="Gallery" hidden>
+        <h2 class="gallery-title">Gallery</h2>
+        <div class="gallery-grid" aria-label="Previous workshop photos"></div>
+      </section>
     </main>
     <footer><span>Designed by Soobin Park © 2026 KS Research</span></footer>
     <dialog class="photo-dialog" aria-labelledby="photo-caption">
@@ -697,7 +718,7 @@
       );
 
       input.setCustomValidity(
-        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation.'
+        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation, Gallery.'
       );
 
       if (match) {
@@ -711,6 +732,12 @@
     });
 
     input.addEventListener('input', () => input.setCustomValidity(''));
+
+    // 홈의 워크숍 사진을 Gallery에서도 표시합니다.
+    const galleryGrid = document.querySelector('.gallery-grid');
+    document.querySelectorAll('#home .history-item').forEach(figure => {
+      galleryGrid.append(figure.cloneNode(true));
+    });
 
     // 사진 클릭 시 크게 보기. 닫기 버튼, Esc, 배경 클릭으로 닫습니다.
     const photoDialog = document.querySelector('.photo-dialog');
