@@ -219,10 +219,14 @@
     .registration-frame {
       display: block;
       width: 100%;
-      height: 1100px;
+      max-width: 680px;
+      height: 950px;
       border: 0;
-      margin-bottom: 32px;
+      margin: 0 auto 24px;
       background: white;
+    }
+    @media (max-width: 650px) {
+      .registration-frame { height: 1100px; }
     }
 
     /* 큰 탭 제목 대신 본문 크기로 정보를 표시합니다. */
