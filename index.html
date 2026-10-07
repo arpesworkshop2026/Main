@@ -218,6 +218,31 @@
       background: white;
     }
 
+    /* 큰 탭 제목 대신 본문 크기로 정보를 표시합니다. */
+    .event-name {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .venue-name {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .venue-korean { margin: 0 0 20px; font-size: 15px; }
+    .venue-description { font-size: 16px; line-height: 1.75; }
+    .venue-details { margin: 24px 0; font-size: 15px; line-height: 1.7; }
+    .venue-details > div { margin-bottom: 18px; }
+    .venue-details dt { font-weight: 600; margin-bottom: 4px; }
+    .venue-details dd { margin: 0; }
+    .venue-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 20px; font-size: 14px; }
+    .venue-links a, .venue-source a { text-underline-offset: 4px; }
+    .venue-map { display: block; width: 100%; height: 380px; border: 0; background: #fff; }
+    .venue-source { margin: 14px 0 30px; font-size: 12px; }
+
     /* 모바일: 글자를 화면에 맞추고 메뉴를 줄바꿈합니다. */
     @media (max-width: 650px) {
       header { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -239,6 +264,9 @@
         <a href="#home" data-page="home">
           Home
         </a>
+        <a href="#registration" data-page="registration">
+          Registration
+        </a>
         <a href="#program" data-page="program">
           Program
         </a>
@@ -247,9 +275,6 @@
         </a>
         <a href="#sponsors" data-page="sponsors">
           Sponsors
-        </a>
-        <a href="#registration" data-page="registration">
-          Registration
         </a>
         <a href="#contact" data-page="contact">
           Contact
@@ -263,18 +288,14 @@
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
-      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Program, Venue, Sponsors, Registration, Contact">
+      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program, Venue, Sponsors, Contact">
     </form>
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
       <!-- 각 section 안에 해당 탭의 내용을 추가하세요. -->
-      <section id="home">
+      <section id="home" aria-label="Home">
         <p class="eyebrow">ARPES Workshop 2026</p>
-        <h1 class="hero-title event-title">
-          ARPES meets<br>
-          crystal growth<br>
-          and characterization
-        </h1>
+        <p class="event-name">ARPES meets crystal growth and characterization</p>
         <div class="event-details">
           <p class="event-date">November 18–20, 2026</p>
           <p>Songdo, Incheon, South Korea</p>
@@ -283,23 +304,39 @@
         <!-- 나중에 송도 또는 행사장 사진을 여기에 추가하세요. -->
         <!-- <img class="home-photo" src="photo.jpg" alt="Workshop venue in Songdo"> -->
       </section>
-      <section id="program" hidden>
-        <h1>
-          Program
-        </h1>
+      <section id="program" aria-label="Program" hidden>
       </section>
-      <section id="venue" hidden>
-        <h1>
-          Venue
-        </h1>
+      <section id="venue" aria-label="Venue" hidden>
+        <h2 class="venue-name">Songdo Convensia</h2>
+        <p class="venue-korean" lang="ko">송도 컨벤시아</p>
+        <p class="venue-description">ARPES Workshop 2026 will take place at Songdo Convensia in Songdo, Incheon, South Korea, on November 18–20, 2026. The workshop is hosted by Yonsei University.</p>
+        <dl class="venue-details">
+          <div>
+            <dt>Address</dt>
+            <dd>123 Central-ro, Yeonsu-gu, Incheon 21998, South Korea<br><span lang="ko">인천광역시 연수구 센트럴로 123</span></dd>
+          </div>
+          <div>
+            <dt>By subway</dt>
+            <dd>Incheon National University Station, Incheon Subway Line 1.<br>Take Exit 4 and walk approximately 10 minutes to the venue.</dd>
+          </div>
+        </dl>
+        <div class="venue-links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Songdo+Convensia+123+Central-ro+Incheon" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Songdo+Convensia+123+Central-ro+Incheon" target="_blank" rel="noopener noreferrer">Get directions ↗</a>
+        </div>
+        <iframe
+          class="venue-map"
+          title="Google Map showing Songdo Convensia, Incheon"
+          src="https://maps.google.com/maps?q=Songdo%20Convensia%20123%20Central-ro%20Incheon&amp;z=16&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <p class="venue-source"><a href="https://songdoconvensia.visitincheon.or.kr/page/nav-from-seoul2.do" target="_blank" rel="noopener noreferrer">Official venue and transport information ↗</a></p>
       </section>
-      <section id="sponsors" hidden>
-        <h1>
-          Sponsors
-        </h1>
+      <section id="sponsors" aria-label="Sponsors" hidden>
       </section>
-      <section id="registration" hidden>
-        <h1>Registration</h1>
+      <section id="registration" aria-label="Registration" hidden>
         <p class="registration-intro">Register for ARPES Workshop 2026 using the form below.</p>
         <a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform" target="_blank" rel="noopener noreferrer">Open registration form in a new tab ↗</a>
         <iframe
@@ -309,10 +346,7 @@
           loading="lazy"
         ></iframe>
       </section>
-      <section id="contact" hidden>
-        <h1>
-          Contact
-        </h1>
+      <section id="contact" aria-label="Contact" hidden>
       </section>
     </main>
     <footer><span>ARPES Workshop 2026</span><span>Yonsei University · Songdo</span></footer>
@@ -365,7 +399,7 @@
       );
 
       input.setCustomValidity(
-        match ? '' : 'Enter Home, Program, Venue, Sponsors, or Contact.'
+        match ? '' : 'Enter Home, Registration, Program, Venue, Sponsors, or Contact.'
       );
 
       if (match) {
