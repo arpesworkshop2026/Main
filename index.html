@@ -371,7 +371,15 @@
       .hero-copy .event-title { font-size: clamp(30px, 7vw, 46px); }
     }
 
-    </style>
+    
+    .history-meta { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+    .history-scroll { white-space: nowrap; }
+    @media (max-width: 600px) {
+      .history-heading { align-items: center; gap: 12px; }
+      .history-heading h2 { min-width: 0; }
+      .history-meta { flex-shrink: 0; flex-direction: column; align-items: flex-end; gap: 4px; }
+    }
+  </style>
   </head>
   <body>
     <!-- 상단: 로고와 메뉴 -->
@@ -440,7 +448,7 @@
         <div class="workshop-history" aria-labelledby="history-title">
           <div class="history-heading">
             <h2 id="history-title">Previous workshops</h2>
-            <p>2020 — 2025 · Scroll to explore →</p>
+            <p class="history-meta"><span>2020 — 2025</span><span class="history-scroll">· Scroll to explore →</span></p>
           </div>
           <div class="history-grid" tabindex="0" role="region" aria-label="Previous workshop photos. Scroll horizontally to view all four photos.">
             <figure class="history-item">
