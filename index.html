@@ -448,7 +448,7 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       object-position: 48% 48%;
-      margin-left: -20px;
+      margin-left: -50px;
       -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 44%, rgba(0,0,0,.92) 58%, rgba(0,0,0,.45) 76%, transparent 98%);
       mask-image: radial-gradient(ellipse closest-side at center, #000 44%, rgba(0,0,0,.92) 58%, rgba(0,0,0,.45) 76%, transparent 98%);
     }
@@ -456,7 +456,33 @@
       .quantum-art { width: calc(100% + 72px); margin-left: -8px; }
     }
     @media (max-width: 650px) {
-      .quantum-art { width: 150%; margin-left: -6%; aspect-ratio: 4 / 5; object-position: 47% 48%; }
+      .quantum-art {
+        width: 150%;
+        margin-left: -6%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+        -webkit-mask-composite: source-in;
+        mask-composite: intersect;
+      }
+      /* 모바일 메뉴: 한 줄로 좌우 스크롤 */
+      nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding-bottom: 6px;
+        scrollbar-width: thin;
+      }
+      .nav-row { display: contents; }
+      nav a { flex: 0 0 auto; white-space: nowrap; font-size: 16px; }
+      nav button { flex: 0 0 36px; }
+
     }
   </style>
   </head>
