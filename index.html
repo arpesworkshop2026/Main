@@ -243,6 +243,17 @@
     .venue-map { display: block; width: 100%; height: 380px; border: 0; background: #fff; }
     .venue-source { margin: 14px 0 30px; font-size: 12px; }
 
+    /* 호텔 안내: 작은 제목과 구분선, 모바일에서도 한 열로 표시 */
+    .hotel-intro { margin: 0 0 24px; font-size: 16px; line-height: 1.7; }
+    .hotel { padding: 24px 0; border-top: 1px solid #cfd3d8; }
+    .hotel h2 { margin: 0 0 6px; font-size: 20px; font-weight: 500; line-height: 1.4; }
+    .hotel p { margin: 10px 0; font-size: 15px; line-height: 1.7; }
+    .hotel .hotel-korean { margin-top: 0; font-size: 13px; }
+    .hotel .hotel-address { font-size: 13px; }
+    .hotel-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 16px; font-size: 14px; }
+    .hotel-links a { text-underline-offset: 4px; }
+    .hotel-note { margin: 12px 0 32px; font-size: 13px; line-height: 1.7; }
+
     /* 모바일: 글자를 화면에 맞추고 메뉴를 줄바꿈합니다. */
     @media (max-width: 650px) {
       header { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -279,9 +290,6 @@
         <a href="#accommodation" data-page="accommodation">
           Accommodation
         </a>
-        <a href="#travel" data-page="travel">
-          Travel
-        </a>
         <button type="button" aria-label="Search tabs" aria-controls="search-form" aria-expanded="false">
           <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <circle cx="13" cy="13" r="10" stroke="currentColor" stroke-width="3"/>
@@ -291,7 +299,7 @@
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
-      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program at glance, Full program, Venue, Accommodation, Travel">
+      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program at glance, Full program, Venue, Accommodation">
     </form>
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
@@ -356,10 +364,38 @@
         <!-- 세부 프로그램을 여기에 추가하세요. -->
       </section>
       <section id="accommodation" aria-label="Accommodation" hidden>
-        <!-- 숙박 안내를 여기에 추가하세요. -->
-      </section>
-      <section id="travel" aria-label="Travel" hidden>
-        <!-- 교통과 여행 안내를 여기에 추가하세요. -->
+        <p class="hotel-intro">Nearby hotels for your stay during ARPES Workshop 2026, November 18–20.</p>
+        <article class="hotel">
+          <h2>Sheraton Grand Incheon Hotel</h2>
+          <p class="hotel-korean" lang="ko">쉐라톤 그랜드 인천 호텔</p>
+          <p>A full-service hotel near Songdo Convensia, with views of Songdo Central Park.</p>
+          <p class="hotel-address">153 Convensia-daero, Yeonsu-gu, Incheon, South Korea</p>
+          <div class="hotel-links">
+            <a href="https://www.marriott.com/en-us/hotels/selgi-sheraton-grand-incheon-hotel/overview/" target="_blank" rel="noopener noreferrer">Official website / Booking ↗</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Sheraton%20Grand%20Incheon%20Hotel%20153%20Convensia-daero%2C%20Yeonsu-gu%2C%20Incheon" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+          </div>
+        </article>
+        <article class="hotel">
+          <h2>Oakwood Premier Incheon</h2>
+          <p class="hotel-korean" lang="ko">오크우드 프리미어 인천</p>
+          <p>Serviced apartments near the convention venue, offering a convenient option for an extended stay.</p>
+          <p class="hotel-address">165 Convensia-daero, Yeonsu-gu, Incheon, South Korea</p>
+          <div class="hotel-links">
+            <a href="https://www.discoverasr.com/en/oakwood/korea-south/oakwood-premier-incheon" target="_blank" rel="noopener noreferrer">Official website / Booking ↗</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Oakwood%20Premier%20Incheon%20165%20Convensia-daero%2C%20Yeonsu-gu%2C%20Incheon" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+          </div>
+        </article>
+        <article class="hotel">
+          <h2>Orakai Songdo Park Hotel, BW Premier Collection</h2>
+          <p class="hotel-korean" lang="ko">오라카이 송도파크호텔</p>
+          <p>Located near Incheon National University Station. The hotel lists Songdo Convensia as approximately a five-minute walk away.</p>
+          <p class="hotel-address">151 Techno park-ro, Yeonsu-gu, Incheon, South Korea</p>
+          <div class="hotel-links">
+            <a href="https://songdo.orakaihotels.com/eng/" target="_blank" rel="noopener noreferrer">Official website / Booking ↗</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Orakai%20Songdo%20Park%20Hotel%2C%20BW%20Premier%20Collection%20151%20Techno%20park-ro%2C%20Yeonsu-gu%2C%20Incheon" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+          </div>
+        </article>
+        <p class="hotel-note">Please check room availability and rates directly with each hotel for your travel dates.</p>
       </section>
     </main>
     <footer><span>ARPES Workshop 2026</span><span>Yonsei University · Songdo</span></footer>
@@ -412,7 +448,7 @@
       );
 
       input.setCustomValidity(
-        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation, Travel.'
+        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation.'
       );
 
       if (match) {
