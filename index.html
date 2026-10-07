@@ -267,17 +267,20 @@
         <a href="#registration" data-page="registration">
           Registration
         </a>
-        <a href="#program" data-page="program">
-          Program
+        <a href="#program-glance" data-page="program-glance">
+          Program at glance
+        </a>
+        <a href="#full-program" data-page="full-program">
+          Full program
         </a>
         <a href="#venue" data-page="venue">
           Venue
         </a>
-        <a href="#sponsors" data-page="sponsors">
-          Sponsors
+        <a href="#accommodation" data-page="accommodation">
+          Accommodation
         </a>
-        <a href="#contact" data-page="contact">
-          Contact
+        <a href="#travel" data-page="travel">
+          Travel
         </a>
         <button type="button" aria-label="Search tabs" aria-controls="search-form" aria-expanded="false">
           <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -288,7 +291,7 @@
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
-      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program, Venue, Sponsors, Contact">
+      <input type="search" aria-label="Search tabs" placeholder="Search: Home, Registration, Program at glance, Full program, Venue, Accommodation, Travel">
     </form>
     <!-- 본문: 아래 section 안에 각 탭의 내용을 넣으세요. -->
     <main>
@@ -307,8 +310,6 @@
         </div>
         <!-- 나중에 송도 또는 행사장 사진을 여기에 추가하세요. -->
         <!-- <img class="home-photo" src="photo.jpg" alt="Workshop venue in Songdo"> -->
-      </section>
-      <section id="program" aria-label="Program" hidden>
       </section>
       <section id="venue" aria-label="Venue" hidden>
         <h2 class="venue-name">Songdo Convensia</h2>
@@ -338,8 +339,6 @@
         ></iframe>
         <p class="venue-source"><a href="https://songdoconvensia.visitincheon.or.kr/page/nav-from-seoul2.do" target="_blank" rel="noopener noreferrer">Official venue and transport information ↗</a></p>
       </section>
-      <section id="sponsors" aria-label="Sponsors" hidden>
-      </section>
       <section id="registration" aria-label="Registration" hidden>
         <p class="registration-intro">Register for ARPES Workshop 2026 using the form below.</p>
         <a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLScSgucKLoySE2BQWOax5udFu-I7tPtF5XhxNivPHCfAifpV0A/viewform" target="_blank" rel="noopener noreferrer">Open registration form in a new tab ↗</a>
@@ -350,7 +349,17 @@
           loading="lazy"
         ></iframe>
       </section>
-      <section id="contact" aria-label="Contact" hidden>
+      <section id="program-glance" aria-label="Program at glance" hidden>
+        <!-- 전체 일정 요약을 여기에 추가하세요. -->
+      </section>
+      <section id="full-program" aria-label="Full program" hidden>
+        <!-- 세부 프로그램을 여기에 추가하세요. -->
+      </section>
+      <section id="accommodation" aria-label="Accommodation" hidden>
+        <!-- 숙박 안내를 여기에 추가하세요. -->
+      </section>
+      <section id="travel" aria-label="Travel" hidden>
+        <!-- 교통과 여행 안내를 여기에 추가하세요. -->
       </section>
     </main>
     <footer><span>ARPES Workshop 2026</span><span>Yonsei University · Songdo</span></footer>
@@ -403,7 +412,7 @@
       );
 
       input.setCustomValidity(
-        match ? '' : 'Enter Home, Registration, Program, Venue, Sponsors, or Contact.'
+        match ? '' : 'Enter a tab name: Home, Registration, Program at glance, Full program, Venue, Accommodation, Travel.'
       );
 
       if (match) {
