@@ -66,6 +66,8 @@
       gap: 4px 18px;
     }
 
+    .nav-row { display: contents; }
+
     nav a {
       display: inline-flex;
       align-items: center;
@@ -284,12 +286,14 @@
       .history-heading h2 { font-size: 20px; }
     }
 
-    /* 모바일: 메뉴는 한 줄로 좌우 스크롤합니다. */
+    /* 모바일: 메뉴를 두 줄로 가운데 정렬합니다. */
     @media (max-width: 650px) {
       header { flex-direction: column; align-items: center; gap: 12px; }
-      nav { width: 100%; justify-content: flex-start; flex-wrap: nowrap; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 6px; scrollbar-width: thin; }
-      nav > * { flex-shrink: 0; }
-      nav a { font-size: 13px; }
+      nav { width: 100%; flex-direction: column; justify-content: center; flex-wrap: nowrap; gap: 0; }
+      .nav-row { display: flex; justify-content: center; align-items: center; gap: clamp(10px, 3vw, 16px); width: 100%; }
+      .nav-row > * { flex-shrink: 0; }
+      nav a { font-size: 12px; }
+      nav button { width: 32px; }
       section { padding-top: 40px; min-height: 480px; }
       h1 { letter-spacing: -1.8px; }
       footer { flex-wrap: wrap; }
@@ -375,8 +379,8 @@
       body { padding-top: 28px; }
       header, main, form, footer { width: calc(100% - 32px); }
       .home-hero { grid-template-columns: minmax(0, 32fr) minmax(0, 68fr); gap: 12px; }
-      .arpes-art { margin-bottom: 18px; }
-      .hero-logos { gap: 10px; }
+      .arpes-art { width: 130%; max-width: none; margin: 0 0 22px; transform: translateX(-4%); }
+      .hero-logos { width: 120%; gap: 12px; transform: translateX(-3%); }
       .hero-copy .eyebrow { font-size: 9px; letter-spacing: 1px; margin-bottom: 14px; }
       .hero-copy .event-title { font-size: clamp(18px, 5vw, 32px); letter-spacing: -.7px; line-height: 1.2; }
       .event-details { margin-top: 22px; }
@@ -402,6 +406,7 @@
       ARPES Workshop 2026
     </a>
       <nav aria-label="Main navigation">
+        <div class="nav-row">
         <a href="#home" data-page="home">
           Home
         </a>
@@ -411,6 +416,8 @@
         <a href="#program-glance" data-page="program-glance">
           Program at glance
         </a>
+        </div>
+        <div class="nav-row">
         <a href="#full-program" data-page="full-program">
           Full program
         </a>
@@ -426,6 +433,7 @@
             <path d="M21 21L30 30" stroke="currentColor" stroke-width="3"/>
           </svg>
         </button>
+        </div>
       </nav>
     </header>
     <form id="search-form" role="search" hidden>
