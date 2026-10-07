@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=840, user-scalable=yes">
+    <meta name="viewport" content="width=800, user-scalable=yes">
     <title>
       5th ARPES workshop | Home
     </title>
@@ -13,7 +13,7 @@
       --background: #eceef1;
       --ink: #292b29;
       --line: #f5f3ed;
-      --width: 800px;
+      --width: 780px;
     }
 
     * { box-sizing: border-box; }
@@ -392,22 +392,26 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       object-position: 48% 48%;
-      margin-left: -50px;
+      margin-left: 0;
       -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 44%, rgba(0,0,0,.92) 58%, rgba(0,0,0,.45) 76%, transparent 98%);
       mask-image: radial-gradient(ellipse closest-side at center, #000 44%, rgba(0,0,0,.92) 58%, rgba(0,0,0,.45) 76%, transparent 98%);
     }
     
     
   
-    /* 모든 기기에서 같은 800px 콘텐츠 배치. 모바일에서는 확대해서 읽을 수 있습니다. */
+    /* 전체 기준 폭 800px, 콘텐츠 780px, 좌우 여백 각 10px. 모바일에서는 확대해서 읽을 수 있습니다. */
     html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-    body { min-width: 840px; }
-    header, main, form, footer { width: 800px; }
+    body { min-width: 800px; }
+    header, main, form, footer { width: 780px; }
     nav { flex-wrap: nowrap; }
     nav a { font-size: 19px; }
     .hero-copy .event-title { font-size: 54px; }
     .event-details .event-date { font-size: 32px; }
-</style>
+    /* 고정 viewport에서도 휴대폰 화면을 기준으로 사진 위치만 조절합니다. */
+    @media screen and (max-device-width: 800px) {
+      .quantum-art { margin-left: 10px; }
+    }
+  </style>
   </head>
   <body>
     <!-- 상단: 로고와 메뉴 -->
